@@ -5,33 +5,58 @@ class Person:
         obj.__name_ = name
         obj.__age_ = age 
         obj.__gender_ = gender
+
     #here instead GetPersonAttributes better make 
     #3 different get methods (GetName, GetAge, GetGender)
-    def GetPersonAttributes(obj):
-        return obj.__name_, obj.__age_, obj.__gender_
+    def GetName(obj):
+        return obj.__name_
+
+    def GetAge(obj):
+        return obj.__age_
+
+    def GetGender(obj):
+        return obj.__gender_
+
+    def SetName(obj, name):
+        obj.__name_ = name
+
+    def SetAge(obj, age):
+        obj.__age_ = age 
+
+    def SetGender(obj, gender):
+        obj.__gender_ = gender
+
+
         
     #here instead SetPersonAttributes better make 
     #3 different set methods (SetName, SetAge, SetGender)
-    def SetPersonAttributes(obj, name, age, gender):
-        obj.__name_ = name
-        obj.__age_ = age 
-        obj.__gender_ = gender
+
 
 #the class Database is aimed to save Person objects
 #and provide access to them only through its methods
 class Database:
     #the constructor should receive no arguments
     #beside the default argument (DB)
-    def __init__(DB, AddPerson, GetPersonByName):
+    def __init__(DB):
         #the data members naming is not correct
-        DB.AddPerson_ = AddPerson #because the constructor does not receive arguments, the assignment should be an empty container (list, set, dict...)
-        DB.GetPersonByName_ = GetPersonByName #the same here
+        DB.__people_ = [] #Isaac: dont think i need this as cannot get name from it in the return value of the method GetPersonByName without getting an error 
+        DB.__my_dict_ = {} #the same here
 
     #the methods names are not correct
     #you should have only two methods: AddPerson(person), GetPersonByName(name)
     #you used those names for the data members but not for the methods
-    def SetValues(DB, individual):
-        DB.AddPerson_ .append(individual)
+    def AddPerson(DB, input):
+        DB.__people_.append(input)
+        DB.__my_dict_[input] = len(DB.__people_) -1
+
+
+    def GetPersonByName(DB, name):
+        index_of_person = DB.__my_dict_.get(name)
+        if index_of_person != None:
+            return User.GetName(),User.GetAge(),User.GetGender()
+            
+    
+        return None
 
     #the methods GetPersonByName(name) should return a Person object that matches the name
     #otherwise, an error message should be printed
@@ -40,18 +65,18 @@ class Database:
     #assert database.GetPersonByName("Josias") == Person("Josias", 23, "Male")
     #database.GetPersonByName("Isaac") #error message
     
-    def PrintName(DB):
-        print(f"The members of the list are{DB.AddPerson_}")
+    #def GetPersonByName(DB):
+        #assert 
+        
+mingzi = "Isaac"
+age = 18
+Gender = "Male"
+User = Person(mingzi, age, Gender) 
+database = Database()
+database.AddPerson(mingzi)
+assert database.GetPersonByName(mingzi) == ("Isaac",18,"Male")
+#User.SetPersonAttributes(name_, age_, gender_) given the change in name would be User.AddPerson(name_, age_, gender_)
 
 
-name_ = input("name?")
-age_ = int(input("Age?"))
-gender_ = input("Gender?")
-User = Person(name_, age_ , gender_)
-data_b = Database(list(()),"")
-
-#User.SetPersonAttributes(name_, age_, gender_)
-data_b.SetValues(User.GetPersonAttributes())
-data_b.PrintName()
 
 
