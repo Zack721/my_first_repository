@@ -16,9 +16,13 @@ class BrickBatch:
         return br.amount_ * Brick().VALUE_
        
 class Inventory:
+    #This class should have at least 3 data members: money_ (int), bricks_bought_ (container of Bricks objects), 
+    #and authorized_personnel_ (container of Builder objects)
     def __init__(inv, money):
         inv.__money_ = money
         inv.__bricks_bought_ = []
+
+    #Make one private methods: IsAuthorizedPersonnel(id) - return bool
     
     def GetBudget(inv):
 
@@ -29,18 +33,26 @@ class Inventory:
         else:
             print(f"You dont have enough money come back when u do, you need an extra {total - inv.__money_}")
 
+    #This method takes one argument typed Builder, if the builder is registred as authorized personnel,
+    #so assign the necessary bricks to make a house, if you do not have enought bricks, inside the method buy the rest of bricks,
+    #but if there is not necessary money, so print as much as you can, and then print a message error telling that there are not enough resources
     def AssignBricks(inv):
 
     
-            
+#This class must have one data member: id_ which is a string         
 class Builder:
+    #Here the constructor is incomplete, make sure you take all the necessary arguments
     def __init__(bd):
+        #this data member must be private
         bd.ID_ = 
-
+        
+    #This method should receive a batch of bricks, if the amount is enough to build the a house must print "Building house..." 
+    #and then return a House object, otherwise should print a message error
     def Build(bd):
         #will take some bricks from the inventory
 
 class House:
+    #The constructor receives a batch of bricks, if the amount is enough should print "A house was built", otherwise print a error message
     def __init__(hs):
         hs.BRICKS_NEEDED_ = 500
     def AMountOfBricksNeeded(hs):
